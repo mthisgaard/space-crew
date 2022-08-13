@@ -10,8 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_13_115320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "crews", force: :cascade do |t|
+    t.string "name"
+    t.string "origin"
+    t.bigint "position_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position_id"], name: "index_crews_on_position_id"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "crew_id", null: false
+    t.bigint "mission_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crew_id"], name: "index_orders_on_crew_id"
+    t.index ["mission_id"], name: "index_orders_on_mission_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "crews", "positions"
+  add_foreign_key "orders", "crews"
+  add_foreign_key "orders", "missions"
 end
