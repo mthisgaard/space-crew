@@ -3,5 +3,4 @@ class CrewMember < ApplicationRecord
   has_many :missions, through: :orders
   validates :name, presence: true
   validates :position, presence: true
-  validates :origin, presence: true
 end
