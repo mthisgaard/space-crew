@@ -1,13 +1,18 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg);">
+  <div class="container">
+    <h1>Spacewagon</h1>
+    <p>Send the wagon crew on a mission in outer space!</p>
+    <%= link_to 'Assign new mission', new_mission_path, class: 'btn btn-primary' %>
+  </div>
+</div>
 <div class="container my-4">
-  <h1>Spacewagon</h1>
-  <p>Send the wagon crew on a mission in outer space!</p>
   <h2>The Wagon Crew</h2>
   <div class="cards my-3">
     <% @crew_members.each do |member| %>
       <div class="card-product my-2">
         <img src="<%= member.photo_url %>"  />
         <div class="card-product-infos">
-          <h2><%= member.name %></h2>
+          <h3><%= member.name %></h3>
           <p><strong><%= member.position %></strong></p>
           <p><%= member.origin %></p>
         </div>
@@ -20,21 +25,24 @@
   <% else %>
     <div class="cards my-3">
       <% @missions.each do |mission| %>
-        <div class="card" style="width: 18rem;"> 
+        <div class="card"> 
           <div class="card-body">
-            <h5 class="card-title"><%= mission.name %></h5>
+            <h5 class="card-title"><strong><%= mission.name %></strong></h5>
             <p class="card-text"><%= mission.description %></p>
-            <p><strong>Assigned crew:</strong></p>
+            <p class="m-0"><strong>Assigned crew:</strong></p>
           </div>
           <ul class="list-group list-group-flush">
-            <% mission.crew_members.each do |member| %>
-            <li class="list-group-item"><%= member.name %></li>
+            <% mission.orders.each do |order| %>
+            <li class="list-group-item">
+              <%= image_tag order.crew_member.photo_url, class: 'avatar' %>
+              <%= order.crew_member.name %>
+              <%= link_to order_path(order), data: { turbo_method: :delete, turbo_confirm: "Remove #{order.crew_member.name}?" } do %>
+                <i class="fa-solid fa-x"></i>
+              <% end %>
+            </li>
             <% end %>
           </ul>
-          <div class="card-body">
-            <%# <a href="#" class="card-link">Add more crew</a>
-            <a href="#" class="card-link">Call of mission</a> %>
-          </div>
+          <%= link_to 'Assign crew member', new_mission_order_path(mission), class: 'btn btn-light' %>
         </div>
       <% end %>
     </div>

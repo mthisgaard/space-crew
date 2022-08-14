@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="cards my-3">
+    <h1><%= @mission.name %></h1>
+    <p><%= @mission.description %></p>
+    <p><strong>Assigned crew:</strong></p>
+    <% if @mission.crew_members.empty? %><ul>
+      <p>No crew members assigned...</p>
+    <% else %>
+      <ul>
+        <% @mission.crew_members.each do |member| %>
+          <li><%= member.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= link_to 'Assign crew member', new_mission_order_path(@mission) %>
+  </div>
+  <%= link_to 'Back to ship', root_path %>
+</div>
+   

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :missions, only: [:new, :create] do
   resources :orders, only: [:new, :create]
   end
+  resources :orders, only: [:destroy]
 end
