@@ -35,8 +35,9 @@
         <div class="card"> 
           <div class="card-body">
             <h5 class="card-title"><strong><%= mission.name %></strong></h5>
-            <p class="card-text"><%= mission.description %></p>
-            <p class="m-0"><strong>Assigned crew:</strong></p>
+            <h3 class="card-text"><%= mission.description %></h3>
+            <br>
+            <h4><strong>Assigned crew:</strong></h4>
           </div>
           <ul class="list-group list-group-flush">
             <% mission.orders.each do |order| %>
