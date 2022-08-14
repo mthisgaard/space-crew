@@ -15,7 +15,7 @@ CrewMember.create!(
 
 CrewMember.create!(
   name: 'Douglas Berkley', 
-  position: 'Executive Officer',
+  position: 'First Pilot',
   photo_url: 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_600,w_600/viqfqp0tfkmcwmj7cfwe.jpg'
 )
 
@@ -27,13 +27,13 @@ CrewMember.create!(
 
 CrewMember.create!(
   name: 'Trouni Tiet', 
-  position: 'Engineer',
+  position: 'Chief Engineer',
   photo_url: 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_440,q_auto,w_630/v1569902527/oywemtu6jmosrgqmynh2.webp'
 )
 
 CrewMember.create!(
   name: 'Sasha Kaverina', 
-  position: 'Pilot',
+  position: 'Communications Officer',
   photo_url: 'https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_440,q_auto,w_630/v1597104558/d1r0rlaegapxsihsnkdh.webp'
 )
 
