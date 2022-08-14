@@ -1,5 +1,5 @@
 <%= simple_form_for [@mission, @order] do |f| %>
     <%= f.input :comment %>
     <%= f.association :crew_member %>
-    <%= f.submit 'Send order to crew member', class: 'btn btn-primary' %>
+    <%= f.submit 'Send order to crew member', class: 'btn btn-light' %>
 <% end %>

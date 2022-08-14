@@ -1,8 +1,10 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_1280.jpg);">
+<div class="banner">
   <div class="container">
-    <h1>Spacewagon</h1>
-    <p>Send the wagon crew on a mission in outer space!</p>
-    <%= link_to 'Assign new mission', new_mission_path, class: 'btn btn-primary' %>
+    <div>
+      <h1>Spacewagon</h1>
+      <p><span data-controller="typed-js"></span></p>
+    </div>
+    <%= link_to 'Assign new mission', new_mission_path, class: 'btn btn-light' %>
   </div>
 </div>
 <div class="container my-4">
@@ -14,12 +16,17 @@
         <div class="card-product-infos">
           <h3><%= member.name %></h3>
           <p><strong><%= member.position %></strong></p>
-          <p><%= member.origin %></p>
+          <p>Origin: <%= member.origin %></p>
         </div>
       </div>
     <% end %>
   </div>
-  <h2>Space missions</h2>
+  <div class="d-flex align-items-baseline gap-2">
+    <h2 class="mt-3">Pending missions</h2>
+    <%= link_to new_mission_path, class: 'card-mission-link' do%>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+  </div>
   <% if Mission.all.empty? %>
     <p>No missions yet...</p>
   <% else %>
@@ -33,19 +40,21 @@
           </div>
           <ul class="list-group list-group-flush">
             <% mission.orders.each do |order| %>
-            <li class="list-group-item">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               <%= image_tag order.crew_member.photo_url, class: 'avatar' %>
               <%= order.crew_member.name %>
-              <%= link_to order_path(order), data: { turbo_method: :delete, turbo_confirm: "Remove #{order.crew_member.name}?" } do %>
-                <i class="fa-solid fa-x"></i>
+              <%= link_to order_path(order), data: { turbo_method: :delete, turbo_confirm: "Remove #{order.crew_member.name}?" }, class: 'card-remove-link' do %>
+                <i class="fa-solid fa-user-minus"></i>
               <% end %>
             </li>
             <% end %>
           </ul>
-          <%= link_to 'Assign crew member', new_mission_order_path(mission), class: 'btn btn-light' %>
+          <%= link_to 'Add crew member', new_mission_order_path(mission), class: 'btn btn-light' %>
+          <%= link_to mission_path(mission), data: { turbo_method: :delete, turbo_confirm: "Cancel mission?" }, class: 'card-cancel-link' do %>
+            <i class="fa-solid fa-x"></i>
+          <% end %>
         </div>
       <% end %>
     </div>
   <% end %>
 </div>
-
