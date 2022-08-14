@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container my-4">
+  <h1>Spacewagon</h1>
+  <p>Send the wagon crew on a mission in outer space!</p>
+  <h2>The Wagon Crew</h2>
+  <div class="cards my-3">
+    <% @crew_members.each do |member| %>
+      <div class="card-product my-2">
+        <img src="<%= member.photo_url %>"  />
+        <div class="card-product-infos">
+          <h2><%= member.name %></h2>
+          <p><strong><%= member.position %></strong></p>
+          <p><%= member.origin %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <h2>Space missions</h2>
+  <% if Mission.all.empty? %>
+    <p>No missions yet...</p>
+  <% else %>
+    <div class="cards my-3">
+      <% @missions.each do |mission| %>
+        <div class="card" style="width: 18rem;"> 
+          <div class="card-body">
+            <h5 class="card-title"><%= mission.name %></h5>
+            <p class="card-text"><%= mission.description %></p>
+            <p><strong>Assigned crew:</strong></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% mission.crew_members.each do |member| %>
+            <li class="list-group-item"><%= member.name %></li>
+            <% end %>
+          </ul>
+          <div class="card-body">
+            <%# <a href="#" class="card-link">Add more crew</a>
+            <a href="#" class="card-link">Call of mission</a> %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
