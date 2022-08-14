@@ -1,5 +1,5 @@
 <%= simple_form_for [@mission, @order] do |f| %>
     <%= f.input :comment %>
-    <%= f.association :crew_member %>
+    <%= f.association :crew_member, as: :radio_buttons, include_blank: false, collection: @crew_members %>
     <%= f.submit 'Add crew member', class: 'btn btn-light' %>
 <% end %>

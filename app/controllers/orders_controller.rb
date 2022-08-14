@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @mission = Mission.find(params[:mission_id])
+    @crew_members = CrewMember.where.not(id: @mission.crew_members).order(name: :asc)
   end
 
   def create
