@@ -45,7 +45,7 @@
                 <%= image_tag order.crew_member.photo_url, class: 'avatar' %>
                 <div class="flex-grow-1">
                   <p class="m-0"><strong><%= order.crew_member.name %></strong></p>
-                  <p class="m-0 opacity-75"><%= order.comment %></p>
+                  <p class="m-0 opacity-75"><%= order.comment.empty? ? 'No comment added...' : order.comment %></p>
                 </div>
                 <%= link_to order_path(order), data: { turbo_method: :delete, turbo_confirm: "Remove #{order.crew_member.name}?" }, class: 'card-remove-link' do %>
                   <i class="fa-solid fa-user-minus"></i>
