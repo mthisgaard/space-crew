@@ -10,3 +10,9 @@ development:
 test:
   <<: *default
   database: space_crew_test
+
+production:
+  <<: *default
+  database: space_crew_production
+  username: space_crew
+  password: <%= ENV["SPACE_CREW_DATABASE_PASSWORD"] %>
